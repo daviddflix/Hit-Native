@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Dimensions, Text, View } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
+import 'react-native-reanimated';
 
-function Carousel() {
-    
+export default function CarouselImage () {
+
     const width = Dimensions.get('window').width;
     return (
         <View style={{ flex: 1 }}>
@@ -33,4 +34,3 @@ function Carousel() {
     );
 }
 
-export default Carousel;

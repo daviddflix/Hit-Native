@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View , Pressable, TextInput} from "react-native";
+import { StyleSheet, Text , KeyboardAvoidingView, TextInput} from "react-native";
 import Icono from 'react-native-vector-icons/Ionicons';
 import Arrow from 'react-native-vector-icons/MaterialIcons';
 import { Image, SafeAreaView } from "react-native";
@@ -11,76 +11,34 @@ import deli from '../assets/deli.webp'
 import Menu from 'react-native-vector-icons/Ionicons';
 import React from "react";
 import SearchIcon from 'react-native-vector-icons/AntDesign';
+import { Mask } from "../Categories/pastas/pastas";
+import CarouselImage from "../Categories/carousel/carousel";
 
-
-export function Mask ({route, picture, category}) {
-  return(
-      <Pressable style={Maskstyles.pressable} onPress={() => navigation.navigate(route)} >
-          <Image  style={Maskstyles.image} source={picture}/>
-          <Text  style={Maskstyles.text}>{category}</Text>
-      </Pressable >
-  )
-}
-
-const Maskstyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  safeArea: {
-      display: 'flex',
-      flexDirection: 'row',
-      width: '100%',
-      justifyContent: 'space-around',
-      marginTop: 20
-  },
-  pressable: {
-    display: 'flex',
-    alignItems : 'center',
-    justifyContent: 'center',
-    padding: 10
-  }, 
-  image: {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
-    backgroundColor: '#f5f7f8',
-    elevation: 10
-  },
-  text: {
-      paddingTop: 15
-  }
-});
-
-
-export default function HomeScreen({navigation}) {
+export default function HomeScreen() {
 
     const [text, onChangeText] = React.useState("");
 
     return (
-    <View style={styles.maincontainer}>
+    <KeyboardAvoidingView  behavior="padding" style={styles.maincontainer}>
         <SafeAreaView style={styles.locationContainer}>
             <Icono name="location-sharp" size={22} color="#cd7a3d" />
             <Text style={styles.text}>Ladislao Martines 40</Text>
             <Arrow name="arrow-drop-down" size={20} color="#900" />
         </SafeAreaView>
         <SafeAreaView  style={styles.containerFinder} >
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeText}
-        value={text}
-        placeholder='Arma tu HIT'
-        placeholderTextColor={'black'}
-      />
-       <SearchIcon style={styles.searchIcon} name="search1" size={20} color="#900" />
-    </SafeAreaView>
-       
+          <TextInput
+            style={styles.input}
+            onChangeText={onChangeText}
+            value={text}
+            placeholder='Arma tu HIT'
+            placeholderTextColor={'black'}
+          />
+          <SearchIcon style={styles.searchIcon} name="search1" size={20} color="#900" />
+       </SafeAreaView>
         <Image
         style={styles.image}
         source={image}
-      />
+        />
       <SafeAreaView style={styles.subcontainer}>
         <Mask route={'Pastas'} category={"Pastas"} picture={pastaIcon} />
         <Mask route={'Pastas'} category={"Bebidas"} picture={soda} />
@@ -89,7 +47,8 @@ export default function HomeScreen({navigation}) {
         <Mask route={'Pastas'} category={"Delivery"} picture={deli} />
       </SafeAreaView>
       <Menu  style={styles.menu} name="menu" size={50} color="#393e46" />
-    </View>
+     <CarouselImage/>
+    </KeyboardAvoidingView>
     );
   }
 
@@ -151,7 +110,7 @@ export default function HomeScreen({navigation}) {
           color: "#fff"
         },
         menu: {
-          marginTop: 130,
+          marginTop: 100,
           backgroundColor: '#fff',
           elevation: 5,
           padding: 10,
@@ -169,6 +128,7 @@ export default function HomeScreen({navigation}) {
             borderRadius: 100,
             borderWidth: 1,
             borderColor: '#222831',
+            position: 'static'
           },
           containerFinder: {
             display: 'flex',
