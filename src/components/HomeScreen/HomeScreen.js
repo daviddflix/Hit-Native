@@ -12,7 +12,9 @@ import Menu from 'react-native-vector-icons/Ionicons';
 import React from "react";
 import SearchIcon from 'react-native-vector-icons/AntDesign';
 import { Mask } from "../Categories/pastas/pastas";
-import CarouselImage from "../Categories/carousel/carousel";
+import { Slider } from "../Categories/carousel/carousel";
+
+
 
 export default function HomeScreen() {
 
@@ -46,8 +48,10 @@ export default function HomeScreen() {
         <Mask route={'Pastas'} category={"Locales"} picture={store} />
         <Mask route={'Pastas'} category={"Delivery"} picture={deli} />
       </SafeAreaView>
-      <Menu  style={styles.menu} name="menu" size={50} color="#393e46" />
-     <CarouselImage/>
+     <SafeAreaView style={styles.especiales}>
+       <Text style={styles.textEspeciales}>Especiales</Text>
+      <Slider/>
+     </SafeAreaView>
     </KeyboardAvoidingView>
     );
   }
@@ -69,6 +73,8 @@ export default function HomeScreen() {
         justifyContent: 'center',
         width: '100%',
         height: 50,
+        marginBottom: 20,
+        marginTop: 20
     },
     text: {
         fontWeight: "bold",
@@ -117,6 +123,7 @@ export default function HomeScreen() {
           borderRadius: 100,
           borderWidth: 1,
           borderColor: '#fff',
+          
         },
         input: {
             height: 50,
@@ -141,5 +148,14 @@ export default function HomeScreen() {
           searchIcon:{
             position: 'absolute',
             right: 25
+          },
+          especiales: {
+            width: 350
+          },
+          textEspeciales: {
+            fontSize: 20,
+            paddingLeft: 10,
+            color: 'black',
+            fontWeight: "bold"
           }
   });
